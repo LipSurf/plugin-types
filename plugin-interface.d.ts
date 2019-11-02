@@ -1,5 +1,5 @@
 /// <reference types="webdriverio"/>
-/// <reference types="ava"/>
+declare type ExecutionContext<T> = import('ava').ExecutionContext<T>;
 declare type IndicesPair = [number, number];
 
 declare interface IDisableable {
