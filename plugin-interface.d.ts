@@ -131,7 +131,6 @@ declare interface IPluginUtil {
 
     enterContext: (context: string) => void;
     getContext: () => string;
-    addOverlay: (contents, id?: string, domLoc?:HTMLElement, hold?: boolean) => HTMLDivElement;
     ready: () => Promise<void>;
     queryAllFrames: (query: string, attrs?: string | string[], specialAttrs?: SpecialAttr | SpecialAttr[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
@@ -141,8 +140,8 @@ declare interface IPluginUtil {
     scrollToAnimated: (el: HTMLElement, offset?: number) => void;
     isInViewAndTakesSpace: (el: HTMLElement) => boolean;
     getNoCollisionUniqueAttr: () => string;
-    sleep: (number) => Promise<void>;
-    getHUDEle: () => [HTMLDivElement, boolean];
+    sleep: (t: number) => Promise<void>;
+    getHUDEl: (obscureTags?: boolean) => [HTMLDivElement, boolean];
     pick: (obj: object, ...props: string[]) => object;
     fuzzyScore: (query: string, source: string) => number;
     topFuzzyElemMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => T[];
