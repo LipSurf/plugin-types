@@ -125,7 +125,7 @@ declare interface IPluginUtil {
     shutdown: () => void; // shutdown LipSurf
     start: () => void; // startup LipSurf programmatically
     getOptions(): IOptions; 
-    getOptions<T extends keyof IOptions>(key: T): IOptions[T]; 
+    getOptions<T extends keyof IOptions>(...key: T[]): Pick<IOptions, T>; 
     getLanguage: () => LanguageCode;
     setLanguage: (lang: LanguageCode) => void;
 
