@@ -44,6 +44,10 @@ declare type SyncDynamicMatchFnResp = [number, number, any[]?]|undefined|false;
 declare type AsyncDynamicMatchFnResp = Promise<SyncDynamicMatchFnResp>
 declare type DynamicMatchFnResp = SyncDynamicMatchFnResp|AsyncDynamicMatchFnResp;
 
+declare type CmdArgExtras = any[]|undefined;
+// the ...any[] should match CmdArgExtras but there's no way to do that along with allowing it to be undefined
+declare type CmdArgs = [string]|[string, ...any[]];
+
 declare interface IDynamicMatch {
     // `false` if partial match -- if there's a partial match we should delay other commands that 
     //                  have a full match; because the user might be in the process of saying this longer
@@ -151,6 +155,8 @@ declare interface IPluginUtil {
     highlight: (...els: HTMLElement[]) => void;
     disambiguate: (els: HTMLElement[]|FrameEleWOffsets[]) => Promise<HTMLElement|FrameEleWOffsets>;
     clickOrFocus: (el: HTMLElement) => void;
+    runCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs, allPlugins?: any) => Promise<void>;
+    runOtherCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs) => Promise<void>;
 }
 
 declare interface IAnnotations {
