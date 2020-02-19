@@ -16,7 +16,7 @@ type FrameEleWithOffsets = [string, ClientRect];
 type FrameEleWOffsets = FrameEleWithOffsets;
 
 // for talking to iframes
-type SpecialAttr = 'visible'|'pos'|'onTop';
+type SpecialProp = 'visible'|'pos'|'onTop';
 type SpecialFn = 'clickOrFocus'|'blinkHighlight'|'highlight'|'unhighlightAll';
 
 declare interface IPlan {
@@ -136,7 +136,7 @@ declare interface IPluginUtil {
     enterContext: (context: string) => void;
     getContext: () => string;
     ready: () => Promise<void>;
-    queryAllFrames: (query: string, attrs?: string | string[], specialAttrs?: SpecialAttr | SpecialAttr[]) => Promise<[string, ...any[]]>;
+    queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp | SpecialProp[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
     // TODO: deprecate in favor of generic postToAllFrames?
     // currently used for fullscreen?
