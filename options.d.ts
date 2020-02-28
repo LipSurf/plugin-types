@@ -1,5 +1,10 @@
 declare interface IOptions {
     pluginData: Record<string, ILocalPluginData>;
+    user: {
+        id: string,
+        plan: plan,
+    };
+    context: string;
     pluginPreferences: Record<string, ISyncPluginData>;
     language: LanguageCode;
     showLiveText: boolean;

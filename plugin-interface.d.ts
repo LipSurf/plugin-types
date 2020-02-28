@@ -124,6 +124,10 @@ declare interface ICommand extends Partial<IPlan>, ILocalizedCommand, IGlobalCom
     activeDocument?: boolean;
 }
 
+declare interface IButtons {
+    [name: string]: (moduleCtx: any) => Promise<void>;
+}
+
 declare interface IPluginUtil {
     // meta
     shutdown: () => void; // shutdown LipSurf
@@ -157,6 +161,7 @@ declare interface IPluginUtil {
     clickOrFocus: (el: HTMLElement) => void;
     runCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs, allPlugins?: any) => Promise<void>;
     runOtherCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs) => Promise<void>;
+    showNeedsUpgradeError: (data: {plan: plan, hold?: boolean, customMsg?: string, buttons?: IButtons}) => Promise<void>;
 }
 
 declare interface IAnnotations {
