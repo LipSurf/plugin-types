@@ -109,9 +109,10 @@ interface IStringSetting extends IBaseSetting {
 }
 
 declare type ISetting = IStringSetting | IBooleanSetting;
+declare type SingleTest = (t: ExecutionContext<ICommandTestContext>, say: (s?: string) => Promise<void>, client: WebdriverIOAsync.BrowserObject) => Promise<void>|void;
 
 declare interface ICommand extends Partial<IPlan>, ILocalizedCommand, IGlobalCommand, IFnCommand {
-    test?: (t: ExecutionContext<ICommandTestContext>, say: (s?: string) => Promise<void>, client: WebdriverIOAsync.BrowserObject) => Promise<void>|void;
+    test?: SingleTest | {[testTitle: string]: SingleTest};
     // matchOutput is the array returned from the match function (if there's a match fn) or 
     // the arguments from special match string (wildcard, numeral etc. type special params)
     pageFn?: (transcript: string, ...matchOutput: any[]) => void|Promise<void>;
