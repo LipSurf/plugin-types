@@ -122,7 +122,7 @@ declare interface ICommand extends Partial<IPlan>, ILocalizedCommand, IGlobalCom
     minConfidence?: number;
     // whether to execute this command in the iframe that has focus 
     // won't work if the focus is just document.body
-    activeDocument?: boolean;
+    activeDocument?: true;
 }
 
 declare interface IButtons {
