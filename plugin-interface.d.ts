@@ -117,7 +117,9 @@ declare interface ICommand extends Partial<IPlan>, ILocalizedCommand, IGlobalCom
     // the arguments from special match string (wildcard, numeral etc. type special params)
     pageFn?: (transcript: string, ...matchOutput: any[]) => void|Promise<void>;
     context?: string|string[];
-    enterContext?: string;
+    // set to false to not include this command in Normal mode. For commands that only belong
+    // in certain context(s)
+    normal?: false;
     settings?: ISetting[];
     minConfidence?: number;
     // whether to execute this command in the iframe that has focus 
@@ -138,8 +140,8 @@ declare interface IPluginUtil {
     getLanguage: () => LanguageCode;
     setLanguage: (lang: LanguageCode) => void;
 
-    enterContext: (context: string) => void;
-    getContext: () => string;
+    enterContext: (context: string[]) => void;
+    getContext: () => string[];
     ready: () => Promise<void>;
     queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp | SpecialProp[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
@@ -190,14 +192,14 @@ declare interface IPluginTranslation {
 
 declare interface IContext {
     [name: string]: {
-        // if a context extends another, all the commands in the context it extends can also be used 
-        extends?: string,
-        // list of additional, external commands to allow in this context. Use format [plugin id].[command name]
-        // eg. (LipSurf.Open Help)
-        external?: string[],
+        // list of commands to allow in this context. Use format [plugin id].[command name]
+        // eg. (LipSurf.Open Help) for commands from external plugins
+        commands: {
+            [category: string]: string[],
+        } | string[],
         // false by default. If true, no trimming, lowercasing, hypen removal etc. is done on the
         // transcripts that come down to be checked by match commands
-        raw?: boolean,
+        raw?: true,
     }
 }
 
