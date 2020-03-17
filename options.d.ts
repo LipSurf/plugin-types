@@ -18,6 +18,7 @@ declare interface IOptions {
 interface ICommandData extends IPlan, IGlobalCommand {
     order: number;
     fn?: string;
+    normal?: false;
 }
 
 interface IMatcher {
@@ -29,6 +30,7 @@ interface IMatcher {
 }
 
 interface ILocalPluginData extends IPlan {
+    contexts?: IContext;
     commands: {
         [cmdName: string]: ICommandData
     };

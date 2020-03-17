@@ -24,7 +24,7 @@ declare interface IPlan {
 }
 
 // BCP-47
-declare type LanguageCode = 'af'|'sq'|'am'|'ar'|'ar-DZ'|'ar-BH'|'ar-EG'|'ar-IQ'|'ar-JO'|'ar-KW'|'ar-LB'|'ar-LY'|'ar-MA'|'ar-OM'|'ar-QA'|'ar-SA'|'ar-SY'|'ar-TN'|'ar-AE'|'ar-YE'|'hy'|'as'|'az'|'eu'|'be'|'bn'|'bs'|'bg'|'my'|'ca'|'zh-CN'|'zh-HK'|'zh-MO'|'zh-SG'|'zh-TW'|'hr'|'cs'|'da'|'nl-BE'|'nl-NL'|'en'|'en-AU'|'en-BZ'|'en-CA'|'en-CB'|'en-GB'|'en-IN'|'en-IE'|'en-JM'|'en-NZ'|'en-PH'|'en-ZA'|'en-TT'|'en-US'|'et'|'mk'|'fo'|'fa'|'fi'|'fr-BE'|'fr-CA'|'fr-FR'|'fr-LU'|'fr-CH'|'gd-IE'|'gd'|'de-AT'|'de-DE'|'de-LI'|'de-LU'|'de-CH'|'el'|'gn'|'gu'|'he'|'hi'|'hu'|'is'|'id'|'it-IT'|'it-CH'|'ja'|'kn'|'ks'|'kk'|'km'|'ko'|'lo'|'la'|'lv'|'lt'|'ms-BN'|'ms-MY'|'ml'|'mt'|'mi'|'mr'|'mn'|'ne'|'no-NO'|'or'|'pl'|'pt-BR'|'pt-PT'|'pa'|'rm'|'ro-MO'|'ro'|'ru'|'ru-RU'|'ru-MO'|'sa'|'sr-SP'|'tn'|'sd'|'si'|'sk'|'sl'|'so'|'sb'|'es-AR'|'es-BO'|'es-CL'|'es-CO'|'es-CR'|'es-DO'|'es-EC'|'es-SV'|'es-GT'|'es-HN'|'es-MX'|'es-NI'|'es-PA'|'es-PY'|'es-PE'|'es-PR'|'es-ES'|'es-UY'|'es-VE'|'sw'|'sv-FI'|'sv-SE'|'tg'|'ta'|'tt'|'te'|'th'|'bo'|'ts'|'tr'|'tk'|'uk'|'ur'|'uz-UZ'|'vi'|'cy'|'xh'|'yi'|'zu';
+declare type LanguageCode = 'af'|'sq'|'am'|'ar'|'ar-DZ'|'ar-BH'|'ar-EG'|'ar-IQ'|'ar-JO'|'ar-KW'|'ar-LB'|'ar-LY'|'ar-MA'|'ar-OM'|'ar-QA'|'ar-SA'|'ar-SY'|'ar-TN'|'ar-AE'|'ar-YE'|'hy'|'as'|'az'|'eu'|'be'|'bn'|'bs'|'bg'|'my'|'ca'|'zh-CN'|'zh-HK'|'zh-MO'|'zh-SG'|'zh-TW'|'hr'|'cs'|'da'|'nl-BE'|'nl-NL'|'en'|'en-AU'|'en-BZ'|'en-CA'|'en-CB'|'en-GB'|'en-IN'|'en-IE'|'en-JM'|'en-NZ'|'en-PH'|'en-ZA'|'en-TT'|'en-US'|'et'|'mk'|'fo'|'fa'|'fi'|'fr-BE'|'fr-CA'|'fr-FR'|'fr-LU'|'fr-CH'|'gd-IE'|'gd'|'de-AT'|'de-DE'|'de-LI'|'de-LU'|'de-CH'|'el'|'gn'|'gu'|'he'|'hi'|'hu'|'is'|'id'|'it-IT'|'it-CH'|'ja'|'kn'|'ks'|'kk'|'km'|'ko'|'lo'|'la'|'lv'|'lt'|'ms-BN'|'ms-MY'|'ml'|'mt'|'mi'|'mr'|'mn'|'ne'|'no-NO'|'or'|'pl'|'pt-BR'|'pt-PT'|'pa'|'rm'|'ro-MO'|'ro'|'ru'|'ru-RU'|'ru-MO'|'sa'|'sr-SP'|'tn'|'sd'|'si'|'sk'|'sl'|'so'|'sb'|'es'|'es-AR'|'es-BO'|'es-CL'|'es-CO'|'es-CR'|'es-DO'|'es-EC'|'es-SV'|'es-GT'|'es-HN'|'es-MX'|'es-NI'|'es-PA'|'es-PY'|'es-PE'|'es-PR'|'es-ES'|'es-UY'|'es-VE'|'sw'|'sv-FI'|'sv-SE'|'tg'|'ta'|'tt'|'te'|'th'|'bo'|'ts'|'tr'|'tk'|'uk'|'ur'|'uz-UZ'|'vi'|'cy'|'xh'|'yi'|'zu';
 
 type Serialized<T> = {
     [K in keyof T]: T[K] extends RegExp ? string :
@@ -108,7 +108,12 @@ interface IStringSetting extends IBaseSetting {
     default?: string;
 }
 
-declare type ISetting = IStringSetting | IBooleanSetting;
+interface INumberSetting extends IBaseSetting {
+    type: 'number';
+    default?: number;
+}
+
+declare type ISetting = IStringSetting | IBooleanSetting | INumberSetting;
 declare type SingleTest = (t: ExecutionContext<ICommandTestContext>, say: (s?: string) => Promise<void>, client: WebdriverIOAsync.BrowserObject) => Promise<void>|void;
 
 declare interface ICommand extends Partial<IPlan>, ILocalizedCommand, IGlobalCommand, IFnCommand {
@@ -131,6 +136,8 @@ declare interface IButtons {
     [name: string]: (moduleCtx: any) => Promise<void>;
 }
 
+declare type ContextMutator = (origContext: string[]) => string[];
+
 declare interface IPluginUtil {
     // meta
     shutdown: () => void; // shutdown LipSurf
@@ -142,7 +149,9 @@ declare interface IPluginUtil {
 
     enterContext: (context: string[]) => void;
     getContext: () => string[];
+    mutateContext: (mutator: ContextMutator) => Promise<void>;
     ready: () => Promise<void>;
+    waitForElToExist: (elQ: string) => Promise<HTMLElement>;
     queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp | SpecialProp[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
     // TODO: deprecate in favor of generic postToAllFrames?
@@ -154,9 +163,10 @@ declare interface IPluginUtil {
     sleep: (t: number) => Promise<void>;
     getHUDEl: (obscureTags?: boolean) => [HTMLDivElement, boolean];
     pick: (obj: object, ...props: string[]) => object;
+    completeFuzzyScore: (query: string, source: string) => number;
     fuzzyScore: (query: string, source: string) => number;
     topFuzzyElemMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => T[];
-    makeVoiceFriendly: (text: string) => string;
+    makeVoiceFriendly: (text: string, keepAccents?: boolean) => string;
     disambiguatedFuzzyMatch: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => T;
     unhighlightAll: () => void;
     highlight: (...els: HTMLElement[]) => void;
@@ -207,6 +217,7 @@ declare interface IPluginBase {
     // should not be overridden by plugins
     getPluginOption: (pluginId: string, name: string) => any;
     setPluginOption: (pluginId: string, name: string, val: any) => Promise<void>;
+    addEventListener: (evt: 'context', cb: (data: {context: string[]}) => void) => void;
 
     util: IPluginUtil;
     annotations: IAnnotations;
