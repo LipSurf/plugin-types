@@ -147,7 +147,7 @@ declare interface IPluginUtil {
     getLanguage: () => LanguageCode;
     setLanguage: (lang: LanguageCode) => void;
 
-    enterContext: (context: string[]) => void;
+    enterContext: (context: string[]) => Promise<void>;
     getContext: () => string[];
     mutateContext: (mutator: ContextMutator) => Promise<void>;
     ready: () => Promise<void>;
