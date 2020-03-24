@@ -19,6 +19,9 @@ type FrameEleWOffsets = FrameEleWithOffsets;
 type SpecialProp = 'visible'|'pos'|'onTop';
 type SpecialFn = 'clickOrFocus'|'blinkHighlight'|'highlight'|'unhighlightAll';
 
+type StoreListener<T> = (newState: T) => (Promise<void>|void);
+
+
 declare interface IPlan {
     plan: plan;
 }
@@ -141,7 +144,8 @@ declare type ContextMutator = (origContext: string[]) => string[];
 declare interface IPluginUtil {
     // meta
     shutdown: () => void; // shutdown LipSurf
-    start: () => void; // startup LipSurf programmatically
+    pause: () => void; // pause LipSurf - so it stops listening but doesn't close help or HUD
+    start: () => void; // startup LipSurf programmatically (also resumes)
     getOptions(): IOptions; 
     getOptions<T extends keyof IOptions>(...key: T[]): Pick<IOptions, T>; 
     getLanguage: () => LanguageCode;
@@ -217,7 +221,7 @@ declare interface IPluginBase {
     // should not be overridden by plugins
     getPluginOption: (pluginId: string, name: string) => any;
     setPluginOption: (pluginId: string, name: string, val: any) => Promise<void>;
-    addEventListener: (evt: 'context', cb: (data: {context: string[]}) => void) => void;
+    watch: <K extends keyof IOptions>(handler: StoreListener<Pick<IOptions, K>>, firstProp: K, ...props: K[]) => Promise<number>;
 
     util: IPluginUtil;
     annotations: IAnnotations;
