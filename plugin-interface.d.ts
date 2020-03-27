@@ -151,9 +151,13 @@ declare interface IPluginUtil {
     getLanguage: () => LanguageCode;
     setLanguage: (lang: LanguageCode) => void;
 
-    enterContext: (context: string[]) => Promise<void>;
     getContext: () => string[];
     mutateContext: (mutator: ContextMutator) => Promise<void>;
+    addContext: (context: string) => Promise<void>;
+    removeContext: (context: string) => Promise<void>;
+    // explicitly enter the seq of contexts
+    enterContext: (context: string[]) => Promise<void>;
+    
     ready: () => Promise<void>;
     waitForElToExist: (elQ: string) => Promise<HTMLElement>;
     queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp | SpecialProp[]) => Promise<[string, ...any[]]>;
