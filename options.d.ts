@@ -15,7 +15,12 @@ declare interface IOptions {
     activatedViaPushToTalk: boolean;
 }
 
-interface ICommandData extends IPlan, IGlobalCommand {
+// Based on order given in the Plugin 
+interface IOrderable {
+    order: number;
+}
+
+interface ICommandData extends IPlan, IGlobalCommand, IOrderable {
     order: number;
     fn?: string;
     normal?: false;
@@ -29,7 +34,7 @@ interface IMatcher {
     match: string[] | Serialized<IDynamicMatch>;
 }
 
-interface ILocalPluginData extends IPlan {
+interface ILocalPluginData extends IPlan, IOrderable {
     contexts?: IContext;
     commands: {
         [cmdName: string]: ICommandData

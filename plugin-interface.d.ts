@@ -167,17 +167,18 @@ declare interface IPluginUtil {
     sleep: (t: number) => Promise<void>;
     getHUDEl: (obscureTags?: boolean) => [HTMLDivElement, boolean];
     pick: (obj: object, ...props: string[]) => object;
-    completeFuzzyScore: (query: string, source: string) => number;
-    fuzzyScore: (query: string, source: string) => number;
-    topFuzzyElemMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => T[];
-    makeVoiceFriendly: (text: string, keepAccents?: boolean) => string;
-    disambiguatedFuzzyMatch: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => T;
+
+    fuzzyScore: (query: string, source: string, partial?: boolean) => Promise<number>;
+    topFuzzyElemMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => Promise<T[]>;
+
     unhighlightAll: () => void;
     highlight: (...els: HTMLElement[]) => void;
     disambiguate: (els: HTMLElement[]|FrameEleWOffsets[]) => Promise<HTMLElement|FrameEleWOffsets>;
     clickOrFocus: (el: HTMLElement) => void;
+
     runCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs, allPlugins?: any) => Promise<void>;
     runOtherCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs) => Promise<void>;
+
     showNeedsUpgradeError: (data: {plan: plan, hold?: boolean, customMsg?: string, buttons?: IButtons}) => Promise<void>;
 }
 
@@ -188,7 +189,7 @@ declare interface IAnnotations {
         used: Set<string>,
     };
     select: (annotationName: string) => void;
-    setAnnoSelectCb: (cb: (annoElId: string, annoName: string) => any) => void;
+    setAnnoSelectCb: (cb: (annoEl: FrameEleWOffsets, annoName: string) => any) => void;
 }
 
 declare namespace ExtensionUtil {
