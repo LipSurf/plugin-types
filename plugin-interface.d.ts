@@ -133,6 +133,10 @@ declare interface ICommand extends Partial<IPlan>, ILocalizedCommand, IGlobalCom
     // whether to execute this command in the iframe that has focus 
     // won't work if the focus is just document.body
     activeDocument?: true;
+    // BETA
+    // in case the automatic command sorting is insufficient this allows for 
+    // regular match commands to take priority over dynamic ones
+    priority?: number;
 }
 
 declare interface IButtons {
