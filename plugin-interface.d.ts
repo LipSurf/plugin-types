@@ -202,7 +202,6 @@ declare interface IAnnotations {
 
 declare namespace ExtensionUtil {
     function queryActiveTab(): Promise<chrome.tabs.Tab & TabWithIdAndURL>;
-    function toggleActivated(_activated:boolean): Promise<void>;
 }
 
 declare interface IPluginTranslation {
