@@ -161,20 +161,24 @@ declare interface IPluginUtil {
     removeContext: (context: string) => Promise<void>;
     // explicitly enter the seq of contexts
     enterContext: (context: string[]) => Promise<void>;
-    
-    ready: () => Promise<void>;
-    waitForElToExist: (elQ: string) => Promise<HTMLElement>;
+
     queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp | SpecialProp[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
     // TODO: deprecate in favor of generic postToAllFrames?
     // currently used for fullscreen?
     sendMsgToBeacon: (msg: object) => Promise<any>;
     scrollToAnimated: (el: HTMLElement, offset?: number) => void;
+    getRGB: (colorStr: string) => [number, number, number];
     isInViewAndTakesSpace: (el: HTMLElement) => boolean;
     getNoCollisionUniqueAttr: () => string;
     sleep: (t: number) => Promise<void>;
     getHUDEl: (obscureTags?: boolean) => [HTMLDivElement, boolean];
+    
+    ready: () => Promise<void>;
+    waitForElToExist: (elQ: string) => Promise<HTMLElement>;
+
     pick: (obj: object, ...props: string[]) => object;
+    deepSetArray: (obj: object, keys: string[], value: any) => object;
 
     fuzzyScore: (query: string, source: string, partial?: boolean) => Promise<number>;
     topFuzzyElemMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => Promise<T[]>;
