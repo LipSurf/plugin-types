@@ -194,6 +194,14 @@ declare interface IPluginUtil {
     showNeedsUpgradeError: (data: {plan: plan, hold?: boolean, customMsg?: string, buttons?: IButtons}) => Promise<void>;
 }
 
+declare interface IHelp {
+    autoOpen: (pluginId: string, setting: string, context?: string[]) => void;
+    show: (autoOpen?: boolean) => void;
+    hide: (immediate?: boolean) => void;
+    toggle: (show?: boolean) => boolean;
+    turnOffLastAutoOpened: () => Promise<void>;
+}
+
 declare interface IAnnotations {
     destroy: () => void;
     annotate: (getEls: () => Promise<FrameEleWOffsets[]>) => void;
@@ -237,6 +245,7 @@ declare interface IPluginBase {
 
     util: IPluginUtil;
     annotations: IAnnotations;
+    help: IHelp;
 }
 
 declare interface IPlugin extends Partial<IPlan> {
