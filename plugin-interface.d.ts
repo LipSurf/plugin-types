@@ -199,6 +199,8 @@ declare interface IHelp {
     hide: (immediate?: boolean) => void;
     toggle: (show?: boolean) => boolean;
     turnOffLastAutoOpened: () => Promise<void>;
+    // return true if on left
+    togglePosition: () => boolean;
 }
 
 declare interface IAnnotations {
