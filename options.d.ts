@@ -4,7 +4,6 @@ declare interface IOptions {
         id: string,
         plan: plan,
     };
-    context: string[];
     pluginPreferences: Record<string, ISyncPluginData>;
     language: LanguageCode;
     showLiveText: boolean;

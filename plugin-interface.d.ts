@@ -151,16 +151,15 @@ declare interface IPluginUtil {
     pause: () => void; // pause LipSurf - so it stops listening but doesn't close help or HUD
     start: () => void; // startup LipSurf programmatically (also resumes)
     getOptions(): IOptions; 
-    getOptions<T extends keyof IOptions>(...key: T[]): Pick<IOptions, T>; 
+    getOptions<T extends keyof IOptions>(...key: T[]): Pick<IOptions, T>;
     getLanguage: () => LanguageCode;
     setLanguage: (lang: LanguageCode) => void;
 
     getContext: () => string[];
-    mutateContext: (mutator: ContextMutator) => Promise<void>;
-    addContext: (context: string) => Promise<void>;
-    removeContext: (context: string) => Promise<void>;
+    addContext: (...context: string[]) => void;
+    removeContext: (...context: string[]) => void;
     // explicitly enter the seq of contexts
-    enterContext: (context: string[]) => Promise<void>;
+    enterContext: (context: string[]) => void;
 
     queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp | SpecialProp[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
