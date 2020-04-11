@@ -153,6 +153,8 @@ declare interface IPluginUtil {
     getOptions(): IOptions; 
     getOptions<T extends keyof IOptions>(...key: T[]): Pick<IOptions, T>;
     getLanguage: () => LanguageCode;
+    // automatically reverts to the last selected dialect
+    // if given language code is 2 characters
     setLanguage: (lang: LanguageCode) => void;
 
     getContext: () => string[];
