@@ -181,7 +181,8 @@ declare interface IPluginUtil {
     pick: (obj: object, ...props: string[]) => object;
     deepSetArray: (obj: object, keys: string[], value: any) => object;
 
-    fuzzyScore: (query: string, source: string, partial?: boolean) => Promise<number>;
+    // returns idx, then score
+    fuzzyHighScore: (query: string, sources: string[], minScore: number, partial?: boolean) => Promise<[number, number]>;
     topFuzzyElemMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => Promise<T[]>;
 
     unhighlightAll: () => void;
