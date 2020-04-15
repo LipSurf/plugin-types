@@ -188,8 +188,10 @@ declare interface IPluginUtil {
 
     unhighlightAll: () => void;
     highlight: (...els: HTMLElement[]) => void;
-    disambiguate: (els: HTMLElement[]|FrameEleWOffsets[]) => Promise<HTMLElement|FrameEleWOffsets>;
     clickOrFocus: (el: HTMLElement) => void;
+    disambiguate(els: FrameEleWOffsets[]): Promise<FrameEleWOffsets>;
+    disambiguate(els: HTMLElement[]): Promise<HTMLElement>;
+    disambiguate: (els: HTMLElement[]|FrameEleWOffsets[]) => Promise<HTMLElement|FrameEleWOffsets>;
 
     runCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs, allPlugins?: any) => Promise<void>;
     runOtherCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs) => Promise<void>;
