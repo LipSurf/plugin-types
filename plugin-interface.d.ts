@@ -191,7 +191,7 @@ declare interface IPluginUtil {
     clickOrFocus: (el: HTMLElement) => void;
     disambiguate(els: FrameEleWOffsets[]): Promise<FrameEleWOffsets>;
     disambiguate(els: HTMLElement[]): Promise<HTMLElement>;
-    disambiguate: (els: HTMLElement[]|FrameEleWOffsets[]) => Promise<HTMLElement|FrameEleWOffsets>;
+    disambiguate(els: HTMLElement[]|FrameEleWOffsets[]): Promise<HTMLElement|FrameEleWOffsets>;
 
     runCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs, allPlugins?: any) => Promise<void>;
     runOtherCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs) => Promise<void>;
