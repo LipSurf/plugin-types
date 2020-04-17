@@ -12,6 +12,7 @@ declare interface IOptions {
     inactivityAutoOffMins: number;
     pushToTalkKey: string;
     activatedViaPushToTalk: boolean;
+    context: {[tabId: number]: string[]};
 }
 
 // Based on order given in the Plugin 
