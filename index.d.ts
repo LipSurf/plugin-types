@@ -1,6 +1,8 @@
 
 declare type plan = 0|10|20;
 
+declare type Term = 'yearly'|'monthly';
+
 // one's we've added ourselves
 declare type GeneralizedLanguageCodes = 'fr'|'de'|'es'|'pt';
 // BCP-47
