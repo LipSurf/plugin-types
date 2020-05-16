@@ -9,7 +9,9 @@ declare type LanguageCode = GeneralizedLanguageCodes|'af'|'sq'|'am'|'ar'|'ar-DZ'
 
 declare interface CardSummarized {
     lastFour: string;
-    type: string;
+    brand: string;
+    exp: string;
+    default: boolean;
 }
 
 declare namespace API {
@@ -36,6 +38,6 @@ declare namespace API {
         term: Term;
         plan: plan;
         costInCents: number;
-        card: CardSummarized;
+        cards: CardSummarized[];
     }
 }
