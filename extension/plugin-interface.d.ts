@@ -246,7 +246,9 @@ declare interface IPluginBase {
     // should not be overridden by plugins
     getPluginOption: (pluginId: string, name: string) => any;
     setPluginOption: (pluginId: string, name: string, val: any) => Promise<void>;
+
     watch: <K extends keyof IOptions>(handler: StoreListener<Pick<IOptions, K>>, firstProp: K, ...props: K[]) => Promise<number>;
+    unwatch: (id: number|undefined) => void;
 
     util: IPluginUtil;
     annotations: IAnnotations;
