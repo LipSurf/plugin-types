@@ -182,7 +182,7 @@ declare interface IPluginUtil {
     fuzzyHighScore: (query: string, sources: string[], minScore?: number, partial?: boolean) => Promise<[number, number]>;
     // returns idx, score, matchStartI, matchEndI, 
     fuzzyHighScoreScrub: (query: string, sources: string[], minScore?: number) => Promise<[number, number, number, number]>;
-    topFuzzyElMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[]) => Promise<T[]>;
+    topFuzzyElMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[], minScore?: number) => Promise<T[]>;
 
     unhighlightAll: () => void;
     highlight: (...els: HTMLElement[]) => void;
