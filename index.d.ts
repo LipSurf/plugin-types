@@ -31,6 +31,7 @@ declare namespace API {
 
     interface GetPlanSettingsSuccess {
         success: true;
+        status: 'active'|'canceled'|'past_due'|'trialing'|'unpaid'|'incomplete'|'incomplete_expired';
         // the date in the future when the next payment will take place (null if not an active sub)
         renewAt: number|null;
         // the date in the future the sub will be automatically cancelled
