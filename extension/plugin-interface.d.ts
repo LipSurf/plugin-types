@@ -159,7 +159,7 @@ declare interface IPluginUtil {
     // explicitly enter the seq of contexts
     enterContext: (context: string[]) => void;
 
-    queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp | SpecialProp[]) => Promise<[string, ...any[]]>;
+    queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
     // TODO: deprecate in favor of generic postToAllFrames?
     // currently used for fullscreen?
