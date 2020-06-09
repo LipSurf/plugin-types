@@ -179,7 +179,7 @@ declare interface IPluginUtil {
     memoize: (...args: any[]) => any;
 
     // returns idx, then score
-    fuzzyHighScore: (query: string, sources: string[], minScore?: number, partial?: boolean) => Promise<[number, number]>;
+    fuzzyHighScore: (query: string, sources: string[], minScore?: number, partial?: boolean, skipCanonicalizing?: boolean) => Promise<[number, number]>;
     // returns idx, score, matchStartI, matchEndI, 
     fuzzyHighScoreScrub: (query: string, sources: string[], minScore?: number) => Promise<[number, number, number, number]>;
     topFuzzyElMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[], minScore?: number) => Promise<T[]>;
