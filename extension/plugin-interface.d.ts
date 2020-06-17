@@ -210,9 +210,7 @@ declare interface IHelp {
 declare interface IAnnotations {
     destroy: () => void;
     annotate: (getEls: () => Promise<FrameElWOffsets[]>) => void;
-    annos: {
-        used: Set<string>,
-    };
+    isUsed: (s: string) => boolean;
     select: (annotationName: string) => void;
     setAnnoSelectCb: (cb: (annoEl: FrameElWOffsets, annoName: string) => any) => void;
 }
