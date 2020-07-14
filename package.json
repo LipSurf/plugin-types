@@ -9,6 +9,6 @@
   "license": "MIT",
   "dependencies": {
     "ava": "^3.9.0",
-    "webdriverio": "^6.1.17"
+    "webdriverio": "^6.1.25"
   }
 }
