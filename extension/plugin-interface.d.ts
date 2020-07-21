@@ -11,7 +11,7 @@ declare interface IDisableable {
 type ItemWAssocText<T> = {item: T, text: string[]};
 type ClickableElement = HTMLAnchorElement | HTMLButtonElement | HTMLInputElement;
 type TabWithIdAndURL = chrome.tabs.Tab & {id: number, url: string};
-// the HTMLElement if it's in the current frame, or the element id string if it's another frame
+// the element XFRAME_UNIQUE_ID attribute value, and the client rect of the element
 type FrameElWOffsets = [string, ClientRect];
 
 // for talking to iframes
@@ -187,9 +187,9 @@ declare interface IPluginUtil {
     unhighlightAll: () => void;
     highlight: (...els: HTMLElement[]) => void;
     clickOrFocus: (el: HTMLElement) => void;
-    disambiguate(els: FrameElWOffsets[]): Promise<[FrameElWOffsets, Promise<void>]>;
-    disambiguate(els: HTMLElement[]): Promise<[HTMLElement, Promise<void>]>;
-    disambiguate(els: HTMLElement[]|FrameElWOffsets[]): Promise<[HTMLElement|FrameElWOffsets, Promise<void>]>;
+    disambiguate(els: FrameElWOffsets[]): Promise<[number, Promise<void>]>;
+    disambiguate(els: HTMLElement[]): Promise<[number, Promise<void>]>;
+    disambiguate(els: HTMLElement[]|FrameElWOffsets[]): Promise<[number, Promise<void>]>;
 
     runCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs, allPlugins?: any) => Promise<void>;
     runOtherCmd: (pluginName: string, cmdName: string, cmdArgs: CmdArgs) => Promise<void>;
