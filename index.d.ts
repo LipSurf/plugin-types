@@ -22,14 +22,18 @@ declare namespace API {
         error: string;
     }
 
+    type NotFoundResp  = Pick<PlanSettingsSuccess, 'plan'|'costInCents'>;
+
     interface CreateCheckoutSessionSuccess {
         success: true;
         sessionId: string;
     }
 
-    type GetPlanSettings = FailResp | GetPlanSettingsSuccess;
+    type PlanSettingsResp = FailResp | NotFoundResp | PlanSettingsSuccess;
 
-    interface GetPlanSettingsSuccess {
+    type AddNewCardResp = FailResp | PlanSettingsSuccess;
+
+    interface PlanSettingsSuccess {
         success: true;
         status: 'active'|'canceled'|'past_due'|'trialing'|'unpaid'|'incomplete'|'incomplete_expired';
         // the date in the future when the next payment will take place (null if not an active sub)
@@ -37,9 +41,9 @@ declare namespace API {
         // the date in the future the sub will be automatically cancelled
         cancelAt: number|null;
         endedAt: number|null;
-        term: Term;
+        term: Term|null;
         plan: plan;
         costInCents: number;
-        cards: CardSummarized[];
+        cards: (CardSummarized|{})[];
     }
 }
