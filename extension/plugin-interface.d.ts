@@ -112,7 +112,13 @@ interface INumberSetting extends IBaseSetting {
     default?: number;
 }
 
-declare type ISetting = IStringSetting | IBooleanSetting | INumberSetting;
+interface IChoiceSetting extends IBaseSetting {
+    type: 'choice';
+    choices: string[];
+    default?: string;
+}
+
+declare type ISetting = IStringSetting | IBooleanSetting | INumberSetting | IChoiceSetting;
 declare type SingleTest = (t: ExecutionContext<ICommandTestContext>, say: (s?: string, resultIndex?: number) => Promise<void>, client: WebdriverIO.BrowserObject) => Promise<void>|void;
 
 declare interface ICommand extends Partial<IPlan>, ILocalizedCommand, IGlobalCommand, IFnCommand {
