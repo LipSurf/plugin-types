@@ -159,6 +159,8 @@ declare interface IPluginUtil {
     // explicitly enter the seq of contexts
     enterContext: (context: string[]) => void;
 
+    // takes into account LipSurf dialogues that are in the shadow DOM (eg. custom homosyn adder)
+    getActiveEl: () => Element|null;
     queryAllFrames: (query: string, attrs?: string | string[], props?: string | string[], specialProps?: SpecialProp[]) => Promise<[string, ...any[]]>;
     postToAllFrames: (ids?: string|string[], fnNames?: string | string[], selector?, specialFns?: SpecialFn | SpecialFn[]) =>  void;
     // TODO: deprecate in favor of generic postToAllFrames?
