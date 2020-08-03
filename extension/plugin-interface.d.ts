@@ -175,6 +175,7 @@ declare interface IPluginUtil {
     scrollToAnimated: (el: HTMLElement, offset?: number) => void;
     getRGB: (colorStr: string) => [number, number, number];
     isInViewAndTakesSpace: (el: HTMLElement) => boolean;
+    isOnTop: (el: HTMLElement) => boolean;
     getNoCollisionUniqueAttr: () => string;
     sleep: (t: number) => Promise<void>;
     getHUDEl: (obscureTags?: boolean) => [HTMLDivElement, boolean];
