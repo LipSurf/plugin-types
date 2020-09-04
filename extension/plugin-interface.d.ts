@@ -25,14 +25,11 @@ declare interface IPlan {
     plan: plan;
 }
 
-type Serialized<T> = {
-    [K in keyof T]: T[K] extends RegExp ? string :
-                    T[K] extends RegExp[] ? string[] :
-                    T[K] extends Function ? string :
-                    T[K] extends Array<object> ? Serialized<T[K]> :
-                    T[K] extends Object ? Serialized<T[K]> :
-                    T[K];
-}
+type Serialized<T> = T extends string | number | boolean | null ? T : 
+  T extends RegExp | Function ? string :
+  T extends Set<T> | Array<T> ? Iterable<T> :
+  T extends object ? { [K in keyof T]: Serialized<T[K]> } : 
+  never;
 
 // for 3rd party plugins definitions
 declare interface ISimpleHomophones {
