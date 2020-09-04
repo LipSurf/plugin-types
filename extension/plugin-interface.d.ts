@@ -187,10 +187,8 @@ declare interface IPluginUtil {
     deepSetArray: (obj: object, keys: string[], value: any) => object;
     memoize: (...args: any[]) => any;
 
-    // returns idx, then score
-    fuzzyHighScore: (query: string, sources: string[], minScore?: number, partial?: boolean, skipCanonicalizing?: boolean) => Promise<[number, number]>;
-    // returns idx, score, matchStartI, matchEndI, 
-    fuzzyHighScoreScrub: (query: string, sources: string[], minScore?: number) => Promise<[number, number, number, number]>;
+    fuzzyHighScore: (query: string, sources: string[], minScore?: number, partial?: boolean, skipCanonicalizing?: boolean) => Promise<[idx: number, score: number]>;
+    fuzzyHighScoreScrub: (query: string, sources: string[], minScore?: number) => Promise<[idx: number, score: number, matchStartI: number, matchEndI: number]>;
     topFuzzyElMatches: <T>(query: string, itemWTextColl: ItemWAssocText<T>[], minScore?: number) => Promise<T[]>;
 
     unhighlightAll: () => void;
@@ -238,11 +236,10 @@ declare interface IPluginTranslation {
 
 declare interface IContext {
     [name: string]: {
-        // list of commands to allow in this context. Use format [plugin id].[command name]
+        // * list of commands to allow in this context. Use format [plugin id].[command name]
         // eg. (LipSurf.Open Help) for commands from external plugins
-        commands: {
-            [category: string]: string[],
-        } | string[],
+        // * the first format is for grouping commands (name of the group, followed by commands in the group)
+        commands: [group: string, commands: string[]][] | string[],
         // false by default. If true, no trimming, lowercasing, hypen removal etc. is done on the
         // transcripts that come down to be checked by match commands
         raw?: true,
