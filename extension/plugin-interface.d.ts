@@ -243,6 +243,12 @@ declare interface IContext {
 }
 
 declare interface IPluginBase {
+    constants: Readonly<{
+      contexts: Readonly<{
+        Normal: "Normal",
+        Tag: "Tag"
+      }>;
+    }>;
     // should not be overridden by plugins
     getPluginOption: (pluginId: string, name: string) => any;
     setPluginOption: (pluginId: string, name: string, val: any) => Promise<void>;
