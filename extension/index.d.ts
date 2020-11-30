@@ -1,3 +1,3 @@
-import './options';
-import './tests';
-import './plugin-interface';
+import "./options";
+import "./tests";
+import "./plugin-interface";
