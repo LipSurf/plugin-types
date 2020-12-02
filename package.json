@@ -8,7 +8,8 @@
   "author": "miko@lipsurf.com",
   "license": "MIT",
   "dependencies": {
-    "ava": "^3.9.0",
+    "@types/chrome": "^0.0.126",
+    "ava": "^3.12.1",
     "webdriverio": "^6.1.25"
   }
 }

@@ -1,5 +1,5 @@
 /// <reference types="webdriverio"/>
-/// <reference path="./options.d.ts"/>
+/// <reference types="chrome"/>
 
 declare type ExecutionContext<T> = import("ava").ExecutionContext<T>;
 declare type IndicesPair = [number, number];
