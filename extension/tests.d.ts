@@ -3,7 +3,7 @@ declare type Client = {
   client: WebdriverIO.BrowserObject;
   // only necessary on host
   port?: number;
-  driver?: import('child_process').ChildProcess;
+  driver?: import("child_process").ChildProcess;
 };
 
 declare interface WebdriverIOTestContext {
