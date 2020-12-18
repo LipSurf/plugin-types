@@ -137,7 +137,7 @@ declare type ISetting =
   | IChoiceSetting;
 declare type SingleTest = (
   t: ExecutionContext<ICommandTestContext>,
-  say: (s?: string, resultIndex?: number) => Promise<void>,
+  say: (s?: string, segmentId?: number) => Promise<void>,
   client: WebdriverIO.BrowserObject
 ) => Promise<void> | void;
 
