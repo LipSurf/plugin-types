@@ -309,6 +309,8 @@ declare interface IContext {
     // eg. (LipSurf.Open Help) for commands from external plugins
     // * the first format is for grouping commands (name of the group, followed by commands in the group)
     commands: [group: string, commands: string[]][] | string[];
+    // usually an emoji to show the left of the live transcript
+    icon?: string;
     // false by default. If true, no trimming, lowercasing, hypen removal etc. is done on the
     // transcripts that come down to be checked by match commands
     raw?: true;
