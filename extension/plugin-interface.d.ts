@@ -98,7 +98,7 @@ declare interface ILocalizedCommand extends ILocalizedCommandBase {
   // strings should not have any punctuation in them as puncutation
   // is converted into it's spelled out form eg. "." -> "dot"
   match: string | string[] | IDynamicMatch;
-  // returns the complete liveText that should be shown.
+  // returns the complete liveTs that should be shown.
   // raw input would be eg. "go to are meal time video"
   delay?: number | number[];
 }

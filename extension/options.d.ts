@@ -10,7 +10,7 @@ declare interface IOptions {
   };
   pluginPreferences: Record<string, ISyncPluginData>;
   language: LanguageCode;
-  showLiveText: boolean;
+  showLiveTs: boolean;
   noHeadphonesMode: boolean;
   tutorialSlide: string | null;
   inactivityAutoOffMins: number;
