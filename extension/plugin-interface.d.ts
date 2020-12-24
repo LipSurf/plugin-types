@@ -189,7 +189,7 @@ declare interface IPluginUtil {
   enterContext: (context: string[]) => void;
 
   // takes into account LipSurf dialogues that are in the shadow DOM (eg. custom homosyn adder)
-  getActiveEl: () => Element | null;
+  getActiveEl: () => HTMLElement | null;
   queryAllFrames: (
     query: string,
     attrs?: string | string[],
