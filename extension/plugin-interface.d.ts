@@ -272,7 +272,11 @@ declare interface IPluginUtil {
 }
 
 declare interface IHelp {
-  autoOpen: (pluginId: string, setting: string, context?: string[]) => void;
+  autoOpen: (
+    pluginId: string,
+    setting: string,
+    context?: string[]
+  ) => Promise<() => void>;
   show: (autoOpen?: boolean) => void;
   hide: (immediate?: boolean) => void;
   toggle: (show?: boolean) => boolean;
