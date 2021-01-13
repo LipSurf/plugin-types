@@ -245,11 +245,15 @@ declare interface IPluginUtil {
   unhighlightAll: () => void;
   highlight: (...els: HTMLElement[]) => void;
   clickOrFocus: (el: HTMLElement) => void;
-  disambiguate(els: FrameElWOffsets[]): Promise<[number, Promise<void>]>;
-  disambiguate(els: HTMLElement[]): Promise<[number, Promise<void>]>;
+  disambiguate(
+    els: FrameElWOffsets[]
+  ): Promise<[number, Promise<void>, FrameElWOffsets]>;
+  disambiguate(
+    els: HTMLElement[]
+  ): Promise<[number, Promise<void>, HTMLElement]>;
   disambiguate(
     els: HTMLElement[] | FrameElWOffsets[]
-  ): Promise<[number, Promise<void>]>;
+  ): Promise<[number, Promise<void>, HTMLElement | FrameElWOffsets]>;
 
   runCmd: (
     pluginName: string,
