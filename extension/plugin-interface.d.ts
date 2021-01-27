@@ -161,6 +161,9 @@ declare interface ICommand
   // BETA
   // in case the automatic command sorting is insufficient this allows for
   // regular match commands to take priority over dynamic ones
+  // higher numbers mean higher priority, eg. a priority of 20
+  // gets chosen over a priority of 10.
+  // dynamic command default priority is 10,000
   priority?: number;
 }
 
